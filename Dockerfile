@@ -1,4 +1,4 @@
-FROM node:22.14.0-slim AS base
+FROM node:22.15.0-slim@sha256:157c7ea6f8c30b630d6f0d892c4f961eab9f878e88f43dd1c00514f95ceded8a AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
