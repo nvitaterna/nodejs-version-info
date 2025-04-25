@@ -1,16 +1,16 @@
 import { valid } from 'semver';
 import { z } from 'zod';
 
-const scheduleDetails = z.object({
+export const scheduleDetailsSchema = z.object({
   start: z.string(),
   end: z.string(),
   lts: z.string().optional(),
 });
 
-export const scheduleSchema = z.record(z.string(), scheduleDetails);
+export const scheduleSchema = z.record(z.string(), scheduleDetailsSchema);
 
 export interface FetchedScheduledVersion
-  extends z.infer<typeof scheduleDetails> {
+  extends z.infer<typeof scheduleDetailsSchema> {
   version: number;
 }
 

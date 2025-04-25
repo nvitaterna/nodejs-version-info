@@ -5,6 +5,10 @@ import { FetchedScheduledVersion, scheduleSchema } from './schemas.js';
 export const fetchSchedule = async (): Promise<FetchedScheduledVersion[]> => {
   const response = await fetch(NODEJS_SCHEDULE_URL);
 
+  if (!response.ok) {
+    throw new Error(`Failed to fetch schedule: ${response.statusText}`);
+  }
+
   const data = scheduleSchema.parse(await response.json());
 
   return Object.entries(data)
@@ -24,6 +28,10 @@ export const fetchSchedule = async (): Promise<FetchedScheduledVersion[]> => {
 
 export const fetchVersions = async () => {
   const response = await fetch(NODEJS_VERSIONS_URL);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch versions: ${response.statusText}`);
+  }
 
   const $ = load(await response.text());
 

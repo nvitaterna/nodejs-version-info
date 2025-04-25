@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc --build",
-    "clean": "tsc --build --clean",
-    "dev": "tsx src"
+    "build": "tsc --project tsconfig.build.json",
+    "dev": "tsx src",
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -27,14 +27,17 @@
     "zod": "3.24.3"
   },
   "devDependencies": {
+    "@anatine/zod-mock": "3.14.0",
     "@eslint/js": "9.25.1",
     "@types/node": "22.15.2",
     "@types/semver": "7.7.0",
     "eslint": "9.25.1",
     "eslint-config-prettier": "10.1.2",
+    "msw": "2.7.5",
     "prettier": "3.5.3",
     "tsx": "4.19.3",
     "typescript": "5.8.3",
-    "typescript-eslint": "8.31.0"
+    "typescript-eslint": "8.31.0",
+    "vitest": "3.1.2"
   }
 }
