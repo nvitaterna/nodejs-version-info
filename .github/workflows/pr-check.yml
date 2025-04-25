@@ -9,7 +9,7 @@ on:
       - synchronize
     paths:
       - Dockerfile
-      - src
+      - src/**
       - package.json
       - pnpm-lock.yaml
       - tsconfig.json
