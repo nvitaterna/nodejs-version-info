@@ -1,8 +1,8 @@
 import { load } from 'cheerio';
 import { NODEJS_SCHEDULE_URL, NODEJS_VERSIONS_URL } from './constants.js';
-import { ScheduledVersion, scheduleSchema } from './schemas.js';
+import { FetchedScheduledVersion, scheduleSchema } from './schemas.js';
 
-export const fetchSchedule = async (): Promise<ScheduledVersion[]> => {
+export const fetchSchedule = async (): Promise<FetchedScheduledVersion[]> => {
   const response = await fetch(NODEJS_SCHEDULE_URL);
 
   const data = scheduleSchema.parse(await response.json());
@@ -12,13 +12,12 @@ export const fetchSchedule = async (): Promise<ScheduledVersion[]> => {
       // omimtting out the 0.x versions
       return !version.includes('.');
     })
-    .map(([version, { start, end, lts, maintenance }]) => {
+    .map(([version, { start, end, lts }]) => {
       return {
         version: parseInt(version.replace('v', '')),
         start,
         end,
         lts,
-        maintenance,
       };
     });
 };

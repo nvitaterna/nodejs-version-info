@@ -1,7 +1,8 @@
 import { gte, lte } from 'semver';
 import { fetchSchedule, fetchVersions } from './lib/fetch.js';
-import { isLatestMajor, mapVersion } from './lib/format.js';
+import { isLatestMajor, MappedVersion, mapVersion } from './lib/format.js';
 import { ProgramArgs } from './lib/schemas.js';
+import { ScheduledVersion } from './lib/scheduled-version.js';
 
 export const main = async ({
   min,
@@ -14,9 +15,23 @@ export const main = async ({
     fetchSchedule(),
   ]);
 
-  const mappedVersions = versions.map((version) => {
-    return mapVersion(version, versions, schedule);
+  const scheduledLtsVersion =
+    ScheduledVersion.getFetchedScheduledLtsVersion(schedule);
+
+  const mappedScheduledVersions = schedule.map((scheduleItem) => {
+    return new ScheduledVersion(
+      scheduleItem.version,
+      scheduleItem.version === scheduledLtsVersion.version,
+      scheduleItem.start,
+      scheduleItem.end,
+    );
   });
+
+  const mappedVersions = versions
+    .map((version) => {
+      return mapVersion(version, versions, mappedScheduledVersions);
+    })
+    .filter((mappedVersion): mappedVersion is MappedVersion => !!mappedVersion);
 
   return mappedVersions
     .filter((mappedVersion) => {
