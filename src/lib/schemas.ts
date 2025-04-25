@@ -5,12 +5,12 @@ const scheduleDetails = z.object({
   start: z.string(),
   end: z.string(),
   lts: z.string().optional(),
-  maintenance: z.string().optional(),
 });
 
 export const scheduleSchema = z.record(z.string(), scheduleDetails);
 
-export interface ScheduledVersion extends z.infer<typeof scheduleDetails> {
+export interface FetchedScheduledVersion
+  extends z.infer<typeof scheduleDetails> {
   version: number;
 }
 
