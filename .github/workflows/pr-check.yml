@@ -9,7 +9,10 @@ on:
       - synchronize
     paths:
       - Dockerfile
-      - .github/workflows/build-and-push.yml
+      - src
+      - package.json
+      - pnpm-lock.yaml
+      - tsconfig.json
 
 env:
   # set in ref name step
