@@ -28,7 +28,7 @@ program
     const versionList = filteredVersions.map((version) => {
       return {
         version: version.version,
-        isLts: version.isLts,
+        lts: version.isLts,
         latest: version.latest,
         major: version.major,
         current: version.latest,
