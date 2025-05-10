@@ -27,10 +27,10 @@
     "zod": "3.24.4"
   },
   "devDependencies": {
-    "@eslint/js": "9.25.1",
+    "@eslint/js": "9.26.0",
     "@types/node": "22.15.17",
     "@types/semver": "7.7.0",
-    "eslint": "9.25.1",
+    "eslint": "9.26.0",
     "eslint-config-prettier": "10.1.5",
     "prettier": "3.5.3",
     "tsx": "4.19.4",
