@@ -22,7 +22,7 @@ FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 COPY --chown=node src/ ./src/
-COPY --chown=node tsconfig.json .
+COPY --chown=node tsconfig.build.json tsconfig.json ./
 RUN pnpm run build
 
 FROM nvitaterna/nodejs-distroless:22.15.0@sha256:c9880b3c887880e4a8663558e8b54a9333e8c08317bdd526c354b8055ac1b0ba
