@@ -3,7 +3,7 @@ name: Build and publish to Docker Hub
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 concurrency: production
 
@@ -22,6 +22,15 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run tests
+        run: pnpm test
 
       - name: Docker meta
         id: meta
