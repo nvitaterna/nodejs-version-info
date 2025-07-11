@@ -9,7 +9,7 @@ export const scheduleSchema = z.record(
   }),
 );
 
-export type ScheduleItem = z.infer<typeof scheduleSchema.valueSchema> & {
+export type ScheduleItem = z.infer<typeof scheduleSchema.valueType> & {
   version: number;
 };
 
