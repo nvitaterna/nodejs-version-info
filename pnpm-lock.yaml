@@ -15,8 +15,8 @@ importers:
         specifier: 7.7.3
         version: 7.7.3
       zod:
-        specifier: 4.1.11
-        version: 4.1.11
+        specifier: 4.1.13
+        version: 4.1.13
     devDependencies:
       '@eslint/js':
         specifier: 9.36.0
@@ -1494,8 +1494,8 @@ packages:
     resolution: {integrity: sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA==}
     engines: {node: '>=18'}
 
-  zod@4.1.11:
-    resolution: {integrity: sha512-WPsqwxITS2tzx1bzhIKsEs19ABD5vmCVa4xBo2tq/SrV4RNZtfws1EnCWQXM6yh8bD08a1idvkB5MZSBiZsjwg==}
+  zod@4.1.13:
+    resolution: {integrity: sha512-AvvthqfqrAhNH9dnfmrfKzX5upOdjUVJYFqNSlkmGf64gRaTzlPwz99IHYnVs28qYAybvAlBV+H7pn0saFY4Ig==}
 
 snapshots:
 
@@ -2887,4 +2887,4 @@ snapshots:
 
   yoctocolors-cjs@2.1.2: {}
 
-  zod@4.1.11: {}
+  zod@4.1.13: {}
