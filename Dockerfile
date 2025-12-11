@@ -25,7 +25,7 @@ COPY --chown=node src/ ./src/
 COPY --chown=node tsconfig.build.json tsconfig.json ./
 RUN pnpm run build
 
-FROM nvitaterna/nodejs-distroless:24.11.1@sha256:5d1b15a1079de7da8dc5be185d9f24aefc078397968eb8a04e2b9eb3099216fa
+FROM nvitaterna/nodejs-distroless:24.12.0@sha256:0566bad41fbdd970c410b092d97c7edbe30d63530e33e5a838ee97f5b5428819
 
 USER node
 ENV NODE_ENV=production
