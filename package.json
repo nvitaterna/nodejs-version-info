@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/nvitaterna/nodejs-distroless#readme",
   "dependencies": {
-    "cheerio": "1.1.2",
+    "cheerio": "1.2.0",
     "semver": "7.7.3",
     "zod": "4.1.13"
   },
