@@ -1,19 +1,16 @@
-FROM node:24.13.0-slim@sha256:4660b1ca8b28d6d1906fd644abe34b2ed81d15434d26d845ef0aced307cf4b6f AS base
-
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+FROM node:24.22.1-slim@sha256:be8204d4bd327363357f532187b752ff62759c31bedf98e9e18fc08c9cbd605c AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
-RUN corepack enable
+# pin pnpm to the same major version used in CI
+RUN npm install -g pnpm@10.28.0
 
 USER node
 
 WORKDIR /app
 
-COPY --chown=node package.json pnpm-lock.yaml ./
+COPY --chown=node package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 FROM base AS prod-deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
@@ -25,7 +22,7 @@ COPY --chown=node src/ ./src/
 COPY --chown=node tsconfig.build.json tsconfig.json ./
 RUN pnpm run build
 
-FROM nvitaterna/nodejs-distroless:24.14.1@sha256:b52fde8fb4b4ee63f5925f80f2bee11cded2faa480d509f3173fb1fd0352be83
+FROM nvitaterna/nodejs-distroless:24.16.0@sha256:792eb3a3d0f115d79668eb76225c47d8712c807a7282ed0ce5eac56214120977
 
 USER node
 ENV NODE_ENV=production
