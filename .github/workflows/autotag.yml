@@ -1,6 +1,19 @@
 name: Bump version and create release
 
 on:
+  # release whenever something that goes into the image lands on main (e.g.
+  # an automerged Renovate update), so the published image stays current
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfile
+      - src/**
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - tsconfig.json
+      - tsconfig.build.json
   workflow_dispatch:
 
 # cannot trigger another action from secrets.GITHUB_TOKEN
@@ -21,7 +34,9 @@ jobs:
         with:
           github_token: ${{ secrets.PAT }}
 
+      # github-tag-action v7+ returns no tag when there is nothing to release
       - name: Create a GitHub release
+        if: steps.tag_version.outputs.new_tag != ''
         uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
